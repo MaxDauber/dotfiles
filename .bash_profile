@@ -142,5 +142,5 @@ use_original() {
     python --version
 } 
 source ~/.dotfiles/.bashrc
-source ~/.dotfiles/.inputrc
+#source ~/.dotfiles/.inputrc
 #source ~/.dotfiles/.vimrc
