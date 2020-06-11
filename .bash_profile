@@ -20,8 +20,13 @@ export PATH
 
 # Setting PATH for Ruby
 export PATH="/usr/local/opt/ruby/bin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$(pyenv root)/shims:$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
 # Set editing mode to vim in bash
 set -o vi
@@ -49,10 +54,31 @@ alias install='sudo apt-get --yes --force-yes install'
 alias search='sudo apt-cache search'
 alias mkdir="mkdir -pv"
 
+# Git aliases
+alias g='git'
+alias ga='git add'
+alias gb='git branch'
+alias gbv='git branch -av'
+alias gc='git commit -m'
+alias gcv='git commit'
+alias gch='git checkout'
+alias gd='git diff -w --ignore-blank-lines'
+alias gdv='git diff'
+alias gf='git fetch'
+alias gl='git log --oneline -n 10'
+alias gll='git log --all --decorate --graph --oneline'
+alias gllv='git log --all --decorate --graph'
+alias gm='git merge'
+alias gp='git push'
+alias gpl='git pull'
+alias gs='git status'
+alias gr='git rebase'
+alias gcl='git clone'
+
+# Python aliases
 alias p='python'
 alias p2='python2'
 alias p3='python3'
-
 export EDITOR=vim
 
 # Overwrites cd so every cd is followed by an ls
@@ -85,6 +111,18 @@ extract() {
     fi
 }
 
+# Set default editor
+export EDITOR=vim
+
+# Overwrites cd so every cd is followed by an ls
+function cd() {
+    new_directory="$*";
+    if [ $# -eq 0 ]; then
+        new_directory=${HOME};
+    fi;
+    builtin cd "${new_directory}" && ls
+}
+
 # Save original user path 
 export MY_ORIGINAL_PATH=$PATH
 
@@ -102,7 +140,7 @@ use_original() {
     export PATH=$MY_ORIGINAL_PATH
     echo "Restored original PATH"
     python --version
-}
-
+} 
 source ~/.dotfiles/.bashrc
-
+source ~/.dotfiles/.inputrc
+#source ~/.dotfiles/.vimrc
