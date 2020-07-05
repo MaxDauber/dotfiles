@@ -33,12 +33,14 @@ set -o vi
 
 # Aliases
 alias dc="cd"
-alias ll='ls -altrh'
+alias ll='ls -Galtrh'
 alias la='ls -A'
 alias l='ls -CF'
 alias sl="ls"
 alias la="ls -Al"
 alias bc="bc -l"
+alias gerp='grep'
+alias tailf="tail -f"
 
 # Custom shortcuts
 alias clean='rm -f "#"* "."*~ *~ *.bak *.dvi *.aux *.log' # Delete temp files
@@ -74,6 +76,7 @@ alias gpl='git pull'
 alias gs='git status'
 alias gr='git rebase'
 alias gcl='git clone'
+alias gst='git stash'
 
 # Python aliases
 alias p='python'
