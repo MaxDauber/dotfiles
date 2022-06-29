@@ -5,6 +5,19 @@
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/maxdauber/.bash_profile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+export OPENBLAS=$(/opt/homebrew/bin/brew --prefix openblas)
+export CFLAGS="-falign-functions=8 ${CFLAGS}"
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PROJECT_HOME=$HOME/dev
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
 # Setting PATH for Python 3.7
 # The original version is saved in .bash_profile.pysave
 # PATH="/Library/Frameworks/Python.framework/Versions/3.7/bin:${PATH}"
@@ -24,13 +37,6 @@ export PATH
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="$(pyenv root)/shims:$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
-
-export PYENV_ROOT="$HOME/.pyenv"
-export PROJECT_HOME=$HOME/dev
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
 
 # Set editing mode to vim in bash
 set -o vi
@@ -222,3 +228,5 @@ function ecrlogin {
 [[ -r "$HOME/.primer" ]] && . "$HOME/.primer"
 
 ## End setup functions
+eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
